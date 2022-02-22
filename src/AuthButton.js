@@ -1,12 +1,13 @@
 import {useChain, useMoralis, useMoralisWeb3Api} from "react-moralis";
+import { chainId } from "./ContractInfo";
 
 function AuthButton(props){
     const {enableWeb3, isWeb3Enabled, isWeb3EnableLoading, Moralis} = useMoralis();
-    const {switchNetwork, chainId, chain, account} = useChain();
+    const {switchNetwork, account} = useChain();
     
     async function auth(){
         enableWeb3().then(async ()=> {
-            await switchNetwork("0x13881")
+            await switchNetwork(chainId)
             props.setConnected(true);
         }
         )

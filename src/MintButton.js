@@ -1,5 +1,5 @@
 import {useMoralis, useChain} from "react-moralis";
-import {address, abi, chain} from "./ContractInfo";
+import {address, abi, chain, chainId} from "./ContractInfo";
 import ethers from "ethers";
 import {useState} from "react"
 
@@ -7,7 +7,7 @@ import {useState} from "react"
 function MintButton(props){
 
     const {isWeb3Enabled, enableWeb3, Moralis, user} = useMoralis();
-    const {switchNetwork, chainId, chain, account} = useChain();
+    const {switchNetwork} = useChain();
 
     let mintBlock = 0x00;
 
@@ -79,10 +79,6 @@ function MintButton(props){
                 alert(error.message)
                 return
             }
-            
-
-
-
         }
     }
 
@@ -103,7 +99,7 @@ function MintButton(props){
             <button className=""
             onClick={()=>{
                 enableWeb3().then(async ()=> {
-                    await switchNetwork("0x13881")
+                    await switchNetwork(chainId)
                     props.setConnected(true);
                 }
                 )
