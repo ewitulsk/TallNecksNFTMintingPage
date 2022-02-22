@@ -6,6 +6,7 @@ import Supply from "./Supply";
 import { useEffect, useState } from "react";
 import NFTCard from "./NFTCard";
 import { useMoralis } from "react-moralis";
+import MintDisplay from "./MintDisplay";
 
 function MintPage(){
     
@@ -13,14 +14,28 @@ function MintPage(){
     const [newNFTId, setNewNFTId] = useState(null);
     
     return(
-        <div className="bg-gradient-to-r from-purple-500 to-pink-500 h-max text-2xl text-amber-500 font-mono relative">
+        <div className="bg-dark-orange h-max text-black font-mono relative">
             <AuthButton setConnected={setConnected}/>
             <div className="grid place-items-center">
-                <img className="scale-60" src={process.env.PUBLIC_URL + "/tallNeckLogo.png"}/>
-                <Supply/>
-                <MintButton setConnected={setConnected} setNewNFTId={setNewNFTId}/>
+                <img className="scale-30 -translate-y-28" src={process.env.PUBLIC_URL + "/tallNeckLogo.png"}/>
+            </div>
+            <div className="grid place-items-center">
 
-                <div className="pb-32">
+                <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 drop-shadow-2xl">
+
+                    <div className="md:px-6 lg:px-6 pt-24">
+                        <img src={process.env.PUBLIC_URL+"/TallNeckExample.gif"} className="bg-white rounded-full border-4 border-cyan-500 border-dashed"></img>
+                    </div>
+
+                    <MintDisplay connected={connected} setConnected={setConnected} setNewNFTId={setNewNFTId}/>
+
+                    <div className="md:px-6 lg:px-6 pt-24">
+                        <img src={process.env.PUBLIC_URL+"/TallNeckExample.gif"} className="bg-white rounded-full border-4 border-cyan-500 border-dashed"></img>
+                    </div>          
+
+                </div>
+
+                <div className="pb-32 pt-32">
                 {newNFTId ? <div >
                     <NFTCard newNFTId={newNFTId} setNewNFTId={setNewNFTId}/>
                 </div> : null}

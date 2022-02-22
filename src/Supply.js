@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import {useMoralis, useChain} from "react-moralis";
-import {address, abi} from "./ContractInfo";
+import {address, abi, chain} from "./ContractInfo";
 import { useState } from "react";
 
 function Supply(){
 
     const {isWeb3Enabled, enableWeb3, Moralis, user} = useMoralis();
-    const {switchNetwork, chainId, chain, account} = useChain();
+    const {switchNetwork, chainId, account} = useChain();
 
     const [maxSupply, setMaxSupply] = useState(0);
     const [totalSupply, setTotalSupply] = useState(0);
@@ -23,14 +23,14 @@ function Supply(){
           
         async function getSupply(){
             const maxSupplyOpts = {
-                chain: "mumbai",
+                chain: chain,
                 address: address,
                 function_name: "maxSupply",
                 abi: abi,
                 params:{}
             }
             const totalSupplyOpts = {
-                chain: "mumbai",
+                chain: chain,
                 address: address,
                 function_name: "totalSupply",
                 abi: abi,
@@ -42,6 +42,8 @@ function Supply(){
             
             setMaxSupply(maxSupply);
             setTotalSupply(totalSupply);
+
+            console.log(maxSupply+"/"+totalSupply)
             
         }
         getSupply();
@@ -50,7 +52,7 @@ function Supply(){
     
 
     return(
-        <div className="grid place-items-center pb-8 font-sans text-9xl">
+        <div className="grid place-items-center pb-4 text-6xl font-medium">
             {totalSupply} / {maxSupply}
         </div>
     )

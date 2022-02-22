@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef} from "react";
 import {useMoralis} from "react-moralis";
 import { address, chain } from "./ContractInfo";
 
@@ -8,6 +8,8 @@ function DisplayNfts(props){
     const {isWeb3Enabled, isWeb3EnableLoading, enableWeb3, Moralis, user} = useMoralis();
 
     const [NFTs, setNFTs] = useState([])
+
+    const scrollRef = useRef();
 
     class nft{
         constructor(nft){
@@ -57,12 +59,13 @@ function DisplayNfts(props){
 
         if(props.connected){
             getNfts()
+            scrollRef.current.scrollIntoView({behavior: 'smooth'})
         }
        
     }, [props.connected, user, Moralis])
     
     return (
-        <div>
+        <div ref={scrollRef}>
             <div className="grid grid-cols-3 md:grid-cols-3 sm:grid-cols-1 gap-8">
            {NFTs ? nftItems : null} 
             </div>

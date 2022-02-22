@@ -5,11 +5,17 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    scale: {'60': '.6',},
+    scale: {
+      '30': '.3',
+      '20': '.2',
+      },
       extend:{
         backgroundImage: {
         'exampleGif': "url('./assets/TallNeckExample.gif')",
-      }
+      },
+      colors: {
+        "dark-orange": "#ff9900",
+      }, 
     }
   },
   plugins: [],

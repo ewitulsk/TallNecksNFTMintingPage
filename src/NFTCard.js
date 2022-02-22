@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import {useChain, useMoralis} from "react-moralis";
-import {address, abi} from "./ContractInfo";
+import {address, abi, chain} from "./ContractInfo";
 import axios from "axios";
 
 function NFTCard(props){
@@ -14,8 +14,10 @@ function NFTCard(props){
     
     const [NFT, setNFT] = useState(null);
 
+    const scrollRef = useRef();
+
     const {isWeb3Enabled, enableWeb3, Moralis, user} = useMoralis();
-    const {switchNetwork, chainId, chain, account} = useChain();
+    const {switchNetwork, chainId, account} = useChain();
 
     const appId="GlxPyiF98U4lyK8ZfnGU6YLGE2tTDBol05QkEfYh" 
     const serverUrl="https://gh4qer8n9z1p.moralisweb3.com:2053/server"
@@ -42,7 +44,7 @@ function NFTCard(props){
           
         async function getNFT(){
             const getURIOptions = {
-                chain: "mumbai",
+                chain: chain,
                 address: address,
                 function_name: "tokenURI",
                 abi: abi,
@@ -56,8 +58,8 @@ function NFTCard(props){
             console.log(newNFT)
             console.log(newNFT.image);
             setNFT(newNFT);
+            scrollRef.current.scrollIntoView({behavior: 'smooth'})
 
-            
         }
         getNFT();
         }, [user, Moralis, props.newNFTId]
@@ -65,22 +67,22 @@ function NFTCard(props){
     
     function Card(){
         return(
-            <div className="grid place-items-center shadow-xl border-4 border-amber-500 w-128 rounded-lg">
+            <div className="grid place-items-center text-orange-500 bg-white drop-shadow-2xl border-4 border-cyan-500 border-dashed w-128 rounded-lg">
                 <div className="text-6xl py-2">Your New TallNeck!!!</div>
                 <img src={NFT ? NFT.image : process.env.PUBLIC_URL+"/loading.gif"} class="rounded-lg"/>
                 <div className="py-4">{NFT.metadata.name}</div>
                 <div className="pb-2">
-                    <button className="border-2 border-amber-500" onClick={()=>{
+                    <button className="border-2 border-amber-500 rounded-full" onClick={()=>{
                         props.setNewNFTId(null)
                         window.location.reload(false);                        
-                        }}>YAY!!</button>
+                        }}>YAY!</button>
                 </div>
             </div>
         )
     }
 
     return(
-        <div>
+        <div ref={scrollRef}>
             {NFT ? <Card/> : null}
         </div>
     )

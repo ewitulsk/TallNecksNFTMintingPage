@@ -84,24 +84,36 @@ function MintButton(props){
 
 
         }
-        else{
-            enableWeb3().then(async ()=> {
-                await switchNetwork("0x13881")
-                props.setConnected(true);
-            }
-            )
-        }
     }
 
     
     return(
         <div className="grid place-items-center pb-8">
-            <button className="bg-exampleGif bg-contain h-64 w-64 rounded-lg "
+            {props.connected ? 
+
+            <button className=""
             onClick={()=>{
                 callMint();
             }}>
-                <div className="border-4 rounded-full border-amber-500 bg-purple-400 bg-opacity-90 text-7xl">Mint</div>
-            </button>
+                <div className="rounded-full bg-cyan-400">
+                    <div className="text-lg text-black py-4 px-8">Mint</div>
+                </div>
+            </button> 
+            : 
+            <button className=""
+            onClick={()=>{
+                enableWeb3().then(async ()=> {
+                    await switchNetwork("0x13881")
+                    props.setConnected(true);
+                }
+                )
+            }}>
+                <div className="rounded-full bg-cyan-400">
+                    <div className="text-lg text-black py-4 px-8">Connect</div>
+                </div>
+            </button> 
+            }
+            
         </div>
     )
 

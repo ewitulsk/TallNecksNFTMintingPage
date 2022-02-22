@@ -21,7 +21,7 @@ function App() {
   },[Moralis])
 
   return (
-    <div className="bg-gradient-to-r from-purple-500 to-pink-500 h-screen">
+    <div className="bg-amber-500 h-screen">
 
       <Routes>
 
