@@ -1,6 +1,6 @@
-export const chain = "mumbai";
+export const chain = "matic";
 
-export const address = "0x2Bc8CD88e4000C55001E0E7c50d078Fa2d6Ee560";
+export const address = "0x60a8f7901c3AEa9dFB12477500879cA639Af75b2";
 
 export const abi = [
 	{

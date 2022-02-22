@@ -52,7 +52,7 @@ function Supply(){
     
 
     return(
-        <div className="grid place-items-center pb-4 text-6xl font-medium">
+        <div className="grid place-items-center pb-4 text-4xl font-medium">
             {totalSupply} / {maxSupply}
         </div>
     )
