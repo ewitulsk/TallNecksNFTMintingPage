@@ -12,6 +12,7 @@ function MintPage(){
     
     const [connected, setConnected] = useState(false);
     const [newNFTId, setNewNFTId] = useState(null);
+
     
     return(
         <div className="bg-dark-orange h-max text-black font-mono relative">

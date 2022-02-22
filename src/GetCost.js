@@ -2,7 +2,7 @@ import { useMoralis, useChain } from "react-moralis";
 import {useState, useEffect} from "react";
 import { address, abi, chain } from "./ContractInfo";
 
-function GetCost(){
+function GetCost(props){
 
     const {isWeb3Enabled, enableWeb3, Moralis, user} = useMoralis();
     const {switchNetwork, chainId, account} = useChain();
@@ -29,6 +29,7 @@ function GetCost(){
             }
             await activateMoralis();
             const wei = await Moralis.Web3API.native.runContractFunction(costOpts)
+            props.setMintCost(wei)
             const ethers = Moralis.web3Library;
             const cost = ethers.utils.formatEther(wei)
             console.log("cost: "+cost)

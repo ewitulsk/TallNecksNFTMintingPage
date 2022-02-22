@@ -66,7 +66,7 @@ function MintButton(props){
             const ethers = Moralis.web3Library;
             const provider = await Moralis.enableWeb3();
             mintBlock = await provider.getBlockNumber();
-            const options = {value: 1}
+            const options = {value: props.cost}
             const contract = new ethers.Contract(address, abi, provider.getSigner());
             try{
                 const tx = await contract.mint(1, options);
