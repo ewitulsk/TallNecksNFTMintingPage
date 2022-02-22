@@ -44,7 +44,7 @@ function MintPage(){
 
             </div>
             
-            {connected ? <div className="grid place-items-center text-7xl pb-4">Your Tall Necks</div> : null}
+            {connected ? <div className="grid place-items-center text-7xl pb-4">Your Tall Necks:</div> : null}
             <DisplayNfts connected={connected}/>
         </div>
     )
