@@ -42,8 +42,8 @@ function GetCost(){
     
 
     return(
-        <div className="grid place-items-center pb-8 font-sans text-2xl">
-           1 TNNFT cost 15 Matic.
+        <div className="grid place-items-center pb-8 font-sans text-2xl text-center">
+           1 TNNFT cost {Cost} Matic.
         </div>
     )
 }
